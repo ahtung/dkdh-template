@@ -17,8 +17,8 @@ file 'README.md', <<-CODE
 
 CODE
 
-remove_file "db/database.yml"
-file 'db/database.yml', <<-CODE
+remove_file "config/database.yml"
+file 'config/database.yml', <<-CODE
 development:
   adapter: postgresql
   encoding: unicode
