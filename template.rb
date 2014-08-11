@@ -7,7 +7,7 @@ remove_file "README.rdoc"
 file 'README.md', <<-CODE
 # #{@app_name}
 
-``` rails new -T -m #{Dir.pwd}/template.rb  ```
+``` rails new -T -d postgresql -m #{Dir.pwd}/template.rb  ```
 
 ## Development
 
