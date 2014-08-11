@@ -7,6 +7,8 @@ remove_file "README.rdoc"
 file 'README.md', <<-CODE
 # #{@app_name}
 
+``` rails new -T -m #{Dir.pwd}/template.rb  ```
+
 ## Development
 
 ``` foreman start -f Procfile.dev -e Procfile.dev.env  ```
