@@ -26,12 +26,14 @@ development:
   encoding: unicode
   database: #{@app_name}_development
   pool: 5
+  template: template0
 
 test:
   adapter: postgresql
   encoding: unicode
   database: #{@app_name}_test
   pool: 5
+  template: template0
 
 production:
   adapter: postgresql
