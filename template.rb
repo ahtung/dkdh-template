@@ -54,6 +54,7 @@ gem 'foreman'
 gem 'slim-rails'
 gem 'devise' if devise
 gem 'foundation-rails'
+gem "spring-commands-rspec", group: :development
 gem_group :development, :test do
   gem 'rspec-rails'
   gem 'faker'
