@@ -73,7 +73,7 @@ generate 'foundation:install --slim'
 # devise
 if devise
   generate 'devise:install'
-  generate 'devise User'
+  generate "devise #{devise_model}"
   rake("db:migrate")
   rake("db:migrate RAILS_ENV=test")
   environment 'config.action_mailer.default_url_options = {host: "http://localhost:3000"}', env: 'development'
