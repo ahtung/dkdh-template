@@ -1,26 +1,36 @@
 # template.rb
 
-# README
-remove_file "app/views/layouts/application.html.erb"
+# Clean up
+remove_file 'app/views/layouts/application.html.erb'
+remove_file 'README.rdoc'
+remove_file 'config/database.yml'
 
-remove_file "README.rdoc"
-file 'README.md', <<-CODE
+## README
+file 'README.md', <<-README
 # #{@app_name}
 
-``` rails new -T -d postgresql -m #{Dir.pwd}/template.rb  ```
+# Tech
+
+- Rails #{Rails::VERSION::STRING} 
+- Foreman TODO
+- Foundation TODO
+- Postgresql
 
 ## Development
 
-``` foreman start -f Procfile.dev -e Procfile.dev.env  ```
+  foreman start -f Procfile.dev -e Procfile.dev.env
 
 ## Test
 
-``` foreman run rspec -e Procfile.test.env  ```
+  foreman run rspec -e Procfile.test.env
 
-CODE
+## Production
 
-remove_file "config/database.yml"
-file 'config/database.yml', <<-CODE
+  foreman start -f Procfile -e Procfile.env
+README
+
+## DB
+file 'config/database.yml', <<-DATABASE
 development:
   adapter: postgresql
   encoding: unicode
@@ -38,16 +48,18 @@ production:
   encoding: unicode
   database: #{@app_name}_production
   pool: 5
-CODE
+DATABASE
 
-create_file "Procfile.dev", "web: rails s"
-create_file "Procfile.dev.env", ""
-create_file "Procfile.test.env", ""
+## Foreman
+create_file 'Procfile', 'web: rails s -e production'
+create_file 'Procfile.dev', 'web: rails s'
+create_file 'Procfile.dev.env', ''
+create_file 'Procfile.test.env', ''
 
 devise = yes?("Devise?")
 devise_model = ask("What should we name your devise model?") if devise
 
-# GEMS
+## GEMS
 gem 'foreman'
 gem 'slim-rails'
 gem 'devise' if devise
@@ -68,7 +80,7 @@ run 'bundle install'
 generate 'rspec:install'
 generate 'foundation:install --slim'
 
-# devise
+## Devise
 if devise
   generate 'devise:install'
   generate 'devise User'
@@ -79,7 +91,7 @@ if devise
   route "root to: 'home#index'"
 end
 
-# git
+## git
 git :init
 git add: '.'
 git commit: %Q{ -m 'Initial commit' }
