@@ -75,6 +75,7 @@ gem_group :development, :test do
   gem 'database_cleaner'
   gem 'poltergeist'
 end
+gem 'rails_12factor', :group => :production
 
 # bundle
 run 'bundle install'
