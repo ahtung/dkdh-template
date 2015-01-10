@@ -36,12 +36,14 @@ development:
   encoding: unicode
   database: #{@app_name}_development
   pool: 5
+  template: template0
 
 test:
   adapter: postgresql
   encoding: unicode
   database: #{@app_name}_test
   pool: 5
+  template: template0
 
 production:
   adapter: postgresql
@@ -64,6 +66,7 @@ gem 'foreman'
 gem 'slim-rails'
 gem 'devise' if devise
 gem 'foundation-rails'
+gem "spring-commands-rspec", group: :development
 gem_group :development, :test do
   gem 'rspec-rails'
   gem 'faker'
@@ -83,7 +86,7 @@ generate 'foundation:install --slim'
 ## Devise
 if devise
   generate 'devise:install'
-  generate 'devise User'
+  generate "devise #{devise_model}"
   rake("db:migrate")
   rake("db:migrate RAILS_ENV=test")
   environment 'config.action_mailer.default_url_options = {host: "http://localhost:3000"}', env: 'development'
